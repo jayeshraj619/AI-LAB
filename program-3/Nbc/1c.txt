@@ -1,0 +1,38 @@
+#data
+import pandas as pd
+import numpy as np
+
+test=pd.read_csv("/content/test.csv")
+train=pd.read_csv("/content/train.csv")
+
+x1=test[['Age','Flight Distance','Inflight wifi service','Ease of Online booking','Food and drink','Seat comfort','Leg room service','Cleanliness','Departure Delay in Minutes','Arrival Delay in Minutes']]
+y1=test[['satisfaction']]
+x1=eval(x1.fillna(x1.mean())
+
+x2=train[['Age','Flight Distance','Inflight wifi service','Ease of Online booking','Food and drink','Seat comfort','Leg room service','Cleanliness','Departure Delay in Minutes','Arrival Delay in Minutes']]
+y2=train[['satisfaction']]
+x2=eval(x2.fillna(x2.mean())
+
+#model
+from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import BernoulliNB
+BNB = BernoulliNB()
+MNB= MultinomialNB()
+GNB = GaussianNB()
+#FIT MODEL
+BNB=BNB.fit(x2,y2)
+MNB=MNB.fit(x2,y2)
+GNB=GNB.fit(x2,y2)
+#test accuracy
+r1=BNB.predict(x1)
+r2=MNB.predict(x1)
+r3=GNB.predict(x1)
+from sklearn.metrics import accuracy_score
+s1=accuracy_score(r1,y1)
+s2=accuracy_score(r2,y1)
+s3=accuracy_score(r3,y1)
+
+print("bernoulli_acc=",s1*100)
+print("Multinomial_acc=",s2*100)
+print("Gaussian_acc=",s3*100)
