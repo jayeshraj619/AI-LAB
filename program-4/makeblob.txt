@@ -1,4 +1,4 @@
-# 1. Dataset(pandas)
+# 1.Dataset
 from sklearn.datasets import make_blobs
 X, y = make_blobs(n_samples=300, centers=3, n_features=4,cluster_std=0.60,random_state=0)
 print(X.shape)
