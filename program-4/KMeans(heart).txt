@@ -1,9 +1,9 @@
-# 1. Dataset(pandas)
+# 1.pandas
 import pandas as pd
 heart = pd.read_csv("/content/heart (1).csv")
 x = heart[["trtbps","restecg"]]
 
-# 2. Load KMeans & Fit data
+# 2. Loadmodel & Fitdata
 from sklearn.cluster import KMeans
 ML = KMeans(n_clusters=3,max_iter=5)
 ML = ML.fit(x)
