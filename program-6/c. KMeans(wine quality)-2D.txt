@@ -1,0 +1,24 @@
+# 1. Dataset(pandas)
+import pandas as pd
+winequality_white = pd.read_csv("/content/winequality_white.csv")
+x = winequality_white[["citric acid","density"]]
+
+# 2. Load KMeans & Fit data
+from sklearn.cluster import KMeans
+ML = KMeans(n_clusters=3,max_iter=6)
+ML = ML.fit(x)
+
+# 3. Centers and labels
+centers = ML.cluster_centers_
+labels = ML.labels_
+print("Centers = ", centers)
+print("Labels = ",labels)
+
+# 4. Graph plotting
+import matplotlib.pyplot as plt
+xaxis = winequality_white["citric acid"]
+plt.xlabel("citric acid")
+yaxis = winequality_white["density"]
+plt.ylabel("density")
+plt.title("KMeans Clustering (Wine Quality - White)")
+plt.scatter(x=xaxis,y=yaxis,c=labels,cmap="rainbow")
