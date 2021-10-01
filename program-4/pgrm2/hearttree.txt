@@ -1,0 +1,21 @@
+#load data
+import numpy as np
+import pandas as pd
+data=pd.read_csv("/content/heart.csv")
+x=data.iloc[:,0:-1]
+y=data.iloc[:,-1]
+# model
+from sklearn.tree import DecisionTreeClassifier
+ML=DecisionTreeClassifier()
+ML=ML.fit(x,y)
+R=ML.predict(np.random.rand(1,len(x.columns)))
+print(R)
+#feature name & class name
+import graphviz
+fn=x.columns
+cn=["1","0"]
+#tree draw
+from sklearn.tree import export_graphviz
+d=export_graphviz(ML,feature_names=fn,class_names=cn,filled=True,rounded=True)
+g=graphviz.Source(d)
+g.render("hearttree") 
